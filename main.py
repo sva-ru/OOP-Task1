@@ -1,4 +1,5 @@
 # {"cook_book ": [{'name': "...."}, {}, {}]}
+import collections
 from pprint import pprint
 with open('recipes.txt', 'rt', encoding='utf8') as file:
     cook_book = {}
@@ -15,4 +16,17 @@ with open('recipes.txt', 'rt', encoding='utf8') as file:
             })
         file.readline()
         cook_book[dish_name] = dishes
-    print(cook_book)
+
+
+def get_shop_list_by_dishes(dishes, person_count):
+    sl_shop_list_by_dishes = {}
+    for dishe, ingredients in cook_book.items():
+        for n in ingredients:
+            if dishe in dishes:
+                sl_shop_list_by_dishes[list(n.items())[0][1]] = {list(n.items())[2][0]: list(n.items())[2][1], list(n.items())[1][0]: int(list(n.items())[1][1]) * person_count }
+    return sl_shop_list_by_dishes
+
+
+pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+
+
