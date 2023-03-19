@@ -20,13 +20,19 @@ with open('recipes.txt', 'rt', encoding='utf8') as file:
 
 def get_shop_list_by_dishes(dishes, person_count):
     sl_shop_list_by_dishes = {}
+    quantity = 0
     for dishe, ingredients in cook_book.items():
         for n in ingredients:
             if dishe in dishes:
-                sl_shop_list_by_dishes[list(n.items())[0][1]] = {list(n.items())[2][0]: list(n.items())[2][1], list(n.items())[1][0]: int(list(n.items())[1][1]) * person_count }
+                if list(n.items())[0][1] not in sl_shop_list_by_dishes:
+                    quantity = int(list(n.items())[1][1]) * person_count
+                    sl_shop_list_by_dishes[list(n.items())[0][1]] = {list(n.items())[2][0]: list(n.items())[2][1], list(n.items())[1][0]: quantity}
+                else:
+                    quantity += int(list(n.items())[1][1]) * person_count
+                    sl_shop_list_by_dishes[list(n.items())[0][1]] = {list(n.items())[2][0]: list(n.items())[2][1],list(n.items())[1][0]: quantity}
     return sl_shop_list_by_dishes
 
 
-pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 3))
 
 
