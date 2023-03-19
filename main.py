@@ -32,7 +32,7 @@ def get_shop_list_by_dishes(dishes, person_count):
                     quantity += int(list(n.items())[1][1]) * person_count
                     sl_shop_list_by_dishes[list(n.items())[0][1]] = {list(n.items())[2][0]: list(n.items())[2][1],list(n.items())[1][0]: quantity}
     return sl_shop_list_by_dishes
-
+# Задача №3
 def merging_files(file_to_write, folder):
     listfiles = {}
     path = os.getcwd() + '\\' + folder
@@ -59,5 +59,5 @@ def count_rows(file):
 
 
 pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 3))
-# в параметрах: имя итогового файла, и имя папки с исходными файлами и результирующим
+# в параметрах: имя итогового файла, и имя папки с исходными файлами и результирующим (должна находится вместе с проектом)
 merging_files('rezult.txt', 'folder_files_txt')
